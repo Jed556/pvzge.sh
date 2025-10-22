@@ -1,17 +1,9 @@
 #!/usr/bin/env bash
-# pvzge.sh — start | stop | update | delete PvZ2 Gardendless docker container
-# Usage:
-#   ./pvzge.sh start [HOST_PORT]
-#   ./pvzge.sh stop
-#   ./pvzge.sh update [HOST_PORT]
-#   ./pvzge.sh delete
-#
-# Default host port: 8080
-# Container name: pvzge
-# Image: gaozih/pvzge:latest
+# pvzge.sh - helper script for PvZ2 Gardendless Docker container
 
 set -u
 
+# Defaults
 IMAGE="gaozih/pvzge:latest"
 CONTAINER="pvzge"
 DEFAULT_HOST_PORT="8080"
@@ -96,11 +88,10 @@ confirm_danger() {
   echo
   warn "This action may remove game data. Make sure you EXPORT your save file before proceeding."
   while true; do
-    # -p prints prompt on same line, read returns empty string on Enter
     read -r -p "Proceed? [y/N] " yn
     case "$yn" in
-      [Yy]* ) break ;;          # yes -> continue
-      ""|[Nn]* ) die "Aborting." ;; # Enter or no -> abort
+      [Yy]* ) break ;;
+      ""|[Nn]* ) die "Aborting." ;;
       * ) echo "Please answer y or n." ;; 
     esac
   done
@@ -160,7 +151,7 @@ case "$cmd" in
     ;;
   help|--help|-h|"")
     cat <<EOF
-pvzge.sh — control script for PvZ2 Gardendless Docker container
+pvzge.sh - helper script for PvZ2 Gardendless Docker container
 
 Commands:
   start [HOST_PORT]   Start (or create+start) container. Default port: ${DEFAULT_HOST_PORT}

@@ -1,6 +1,6 @@
 # PvZ2 Gardendless Docker Helper
 
-`pvzge.sh` is a convenience script for managing the **PvZ2 Gardendless** Docker container. It wraps common Docker commands so you can start, stop, update, or delete the container with a single command.
+`pvzge.sh` is a helper script for managing the **PvZ2 Gardendless** Docker container. It wraps common Docker commands so you can start, stop, update, or delete the container with a single command.
 
 ## Requirements
 
@@ -56,3 +56,8 @@ CONTAINER_PORT="80"
 ```
 
 Adjust these values if you host multiple instances or rely on a different image tag.
+
+
+## PvZGE Docker Hub
+
+Docker Hub URL: https://hub.docker.com/r/gaozih/pvzge
