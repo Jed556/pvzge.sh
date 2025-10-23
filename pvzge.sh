@@ -43,7 +43,7 @@ start() {
   local host_port="${1:-$DEFAULT_HOST_PORT}"
   check_docker
   if container_running; then
-    info "Container '$CONTAINER' is already running. Access it at: http://localhost:${host_port}"
+    info "Container '$CONTAINER' is already running. Visit: http://localhost:${host_port}"
     return 0
   fi
   if container_exists; then
