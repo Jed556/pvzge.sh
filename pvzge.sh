@@ -36,7 +36,7 @@ run_container() {
   local host_port="$1"
   info "Creating and starting container '$CONTAINER' mapping ${host_port}:${CONTAINER_PORT}..."
   docker run --name "$CONTAINER" -d -p "${host_port}:${CONTAINER_PORT}" "$IMAGE" \
-    >/dev/null && info "Container started. Play at: http://localhost:${host_port}" || error "Failed to start container. See 'docker logs $CONTAINER'."
+    >/dev/null && info "PvZGE started. Visit: http://localhost:${host_port}" || error "Failed to start container. See 'docker logs $CONTAINER'."
 }
 
 start() {
@@ -48,10 +48,11 @@ start() {
   fi
   if container_exists; then
     info "Container exists but not running. Starting existing container..."
-    docker start "$CONTAINER" >/dev/null && info "Started container. Visit http://localhost:${host_port}" || error "Failed to start container. See 'docker logs $CONTAINER'."
+    docker start "$CONTAINER" >/dev/null && info "PvZGE started. Visit http://localhost:${host_port}" || error "Failed to start container. See 'docker logs $CONTAINER'."
   else
     run_container "$host_port"
   fi
+  cmd.exe /c start "http://localhost:${host_port}" 2>/dev/null || true
 }
 
 stop() {
@@ -86,7 +87,7 @@ _update_or_recreate() {
 
 confirm_danger() {
   echo
-  warn "This action may remove game data. Make sure you EXPORT your save file before proceeding."
+  warn "This action removes game data. Make sure you EXPORT your save file before proceeding."
   while true; do
     read -r -p "Proceed? [y/N] " yn
     case "$yn" in
